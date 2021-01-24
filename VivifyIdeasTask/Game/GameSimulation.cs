@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VivifyIdeasTask.Heroes;
 using VivifyIdeasTask.Heroes.Types;
 using VivifyIdeasTask.Heroes.Weapons;
 using VivifyIdeasTask.Monsters.Types;
@@ -67,17 +68,32 @@ namespace VivifyIdeasTask.Game
 
             swordsman.PickUpWeapon(new Spear(15));
 
-            if (swordsman.MaxWeaponCount == swordsman.Weapons.Length)
+            try
             {
-                try
-                {
-                    swordsman.PickUpWeapon(magic);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Swordsman can't pick up Magic");
-                }
+                swordsman.PickUpWeapon(magic);
             }
+            catch (BackpackFullException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (IllegalWeaponException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void SimulateDropAndPickupByOtherHero()
+        {
+            IHero swordsmanOne = HeroFactory.CreateSwordsman();
+            IHero swordsmanTwo = HeroFactory.CreateSwordsman();
+
+            IHeroWeapon w = swordsmanOne.DropWeapon();
+            IHeroWeapon _ = swordsmanTwo.DropWeapon();
+
+
+            swordsmanTwo.PickUpWeapon(w);
+
+            Console.WriteLine($"'{swordsmanTwo.Name}' je pokupio oružje '{w.Name}'");
         }
     }
 }

@@ -88,7 +88,7 @@ namespace VivifyIdeasTask.Heroes.Types
         {
             if (!CanUseWeapon(weapon))
             {
-                throw new IllegalWeaponException($"'{Name}' ne može koristiti oružje '{weapon.GetType().Name}'");
+                throw new IllegalWeaponException($"'{Name}' ne može koristiti oružje '{weapon.Name}'");
             }
 
             if (Weapons.Length == MaxWeaponCount)

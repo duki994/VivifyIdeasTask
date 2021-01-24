@@ -13,6 +13,8 @@ namespace VivifyIdeasTask
             sim.SimulateGame();
 
             sim.SimulateWeaponDropAndPickup();
+
+            sim.SimulateDropAndPickupByOtherHero();
         }
     }
 }
