@@ -1,4 +1,5 @@
 ﻿using System;
+using VivifyIdeasTask.Game;
 
 namespace VivifyIdeasTask
 {
@@ -7,6 +8,11 @@ namespace VivifyIdeasTask
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            var sim = new GameSimulation();
+            sim.SimulateGame();
+
+            sim.SimulateWeaponDropAndPickup();
         }
     }
 }
